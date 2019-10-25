@@ -8,7 +8,23 @@
  * 5.根據比對的結果決定畫面的行為
   ***************************************************/
 
+$dsn="mysql:host=localhost; charset=utf8; dbname=mydb";
+$pdo=new PDO($dsn, 'root', '');
 
+
+  $sql="select * from user where acc= '$acc'
+  && pw= '$pw'";
+
+  $data= $pdo->query($sql)->fetch();
+  //撈出陣列資料
+
+  if($acc==$data ['acc'] && $pw= $data ['pw']){
+    echo "登錄成功";
+  }else{
+    echo "登錄失敗";
+  }
+
+  但不應該在此頁印出資料，會有安全性問題
 
 
 
