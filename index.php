@@ -16,6 +16,10 @@ if(!empty($_GET['s'])){
   echo "註冊成功，請輸入帳密登錄";
 }
 
+if(!empty($_GET['err'])){
+  echo "帳號或密碼錯錄";
+}
+
 ?>
 
 

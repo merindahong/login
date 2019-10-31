@@ -52,8 +52,12 @@ $pdo=new PDO($dsn, 'root', '');
 print_r($data);
 if($data['r']==1) {
   echo "登錄成功";
+  header("location:member_center.php");
+  //header指向另一個page 會員中心的page
 }else{
 echo "登錄失敗"; 
+header("location:index.php?err=1");
+//header指向另一個page, indext但告訴PHP是 err的訊息
 }
 
 
