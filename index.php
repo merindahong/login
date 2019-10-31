@@ -3,11 +3,13 @@
 <?php
 
 
+
 //若沒有include　base.php Page，就要先宣告使用session
 
-session_start();
+// session_start();
 
-if(!empty($_SESSION['login'])){
+//123 改為cookie
+if(!empty($_COOKIE['login'])){
   // header("location:member_center.php?do=come"); 
   //pp因為做了session，導頁到member即可, 不用do=come
   //做了session之後，就無法回到 index page，除非關掉瀏覽器，再開一次，或到C:/XAMPP/tmp/刪除sess開頭的網站

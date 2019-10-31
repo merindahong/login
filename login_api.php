@@ -91,29 +91,22 @@ include "base.php";
 // Try 4 為了連結member page $data改為id
 print_r($data);
 if(!empty($data)){
-  echo "登入成功";
+echo "登入成功";
 
-  $_SESSION["login"]=1;
-  // 設定 1 為成功 0為失敗
-  // header("location:member_center.php?id=".$data['id']);
+  //123, 建立coookie　２分鐘
+setcookie("login", 1, time()+120);
+setcookie("id", $data["id"], time()+120);
 
-  $_SESSION["id"]=$data;  
-  header("location:member_center.php");
+header("location:member_center.php");
 
-  // $_SESSION['login']=1;
-//到member do if
-//session是一個陣列
-
+//回首頁就失去功能，除非重新開啟browser，或
+//到C://XAMPP/tmp/刪除cookie
+// 可於URL左邊i的樞紐，查看cookie的名字，刪除
 
 }else{
   echo "登入失敗";
   header("location:index.php?err=1");
 }	
-
-
-
-
-
 
 
 

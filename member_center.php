@@ -6,7 +6,8 @@ include_once "base.php";
   // exit();
 // }
 
-if(empty($_SESSION["login"])){
+//123
+if(empty($_COOKIE["login"])){
   exit();
 }
 
@@ -88,7 +89,8 @@ include $file . ".php";
 // 若用無痕模式登入，session也會不一樣
 // session是根據每次和瀏覽器的連線而建立
 
-$sql="select * from user where id='".$_SESSION['id']."'";
+///123
+$sql="select * from user where id='".$_COOKIE['id']."'";
 
 
 //SQL裡面用單引號 ' 用字串包覆 「　" . $_GET['id']. " 　」這個指令
