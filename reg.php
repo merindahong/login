@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <?php
 if(!empty($_GET['s'])){
   echo "註冊失敗，";
