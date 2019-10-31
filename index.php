@@ -17,7 +17,7 @@ if(!empty($_GET['s'])){
 }
 
 if(!empty($_GET['err'])){
-  echo "帳號或密碼錯錄";
+  echo "<h2> 帳號或密碼錯錄 </h2>";
 }
 
 ?>
