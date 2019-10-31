@@ -1,6 +1,26 @@
-<!-- <?php
-// include_once "base.php";
- ?> -->
+ <?php
+include_once "base.php";
+ 
+ // include_once "base.php";
+// if(empty($_SESSION['login'])){
+  // exit();
+// }
+
+if(empty($_SESSION["login"])){
+  exit();
+}
+
+//到C:/XAMPP/temp/開頭為 sess的檔案就是server的cookie紀錄
+// 用VS打開檔案，有敘述使用過的指令痕跡
+// for session 放在最上端，是放在server端的判斷，安全性高 
+//http://localhost/login/member_center.php?do=come
+// 而非id=1不會透漏id訊息　（get會是 id=1)
+
+?> 
+
+
+
+ 
 
 
 <!DOCTYPE html>
@@ -39,15 +59,13 @@
 // include_once "base.php"; 整個程式只會被載入一次，通常是共用檔才下once
 //<!DOCTYPE html>之前，方便修改
 
-// include "header.php"; 
-// 或
+// include "header.php"; // 或
 
  $file="header";
 include $file . ".php";
 // //以後只要改page名稱即可
-//include和require差不多，但include可用於迴區，
-// require可能不行
-//用require若有錯誤，下面的code就都停止執行
+//include和require差不多，但include可用於迴區，require可能不行
+//用require若有錯誤，下方的code就都停止執行
 
 ?>
 
@@ -58,10 +76,20 @@ include $file . ".php";
 <?php
 
 // 要連結MySQL一定要寫下列路徑
-$dsn="mysql:host=localhost; charset=utf8; dbname=mydb";
-$pdo=new PDO($dsn, 'root', '');
+//pp當作了seesion 下列路徑就可省略
+// $dsn="mysql:host=localhost; charset=utf8; dbname=mydb";
+// $pdo=new PDO($dsn, 'root', '');
 
-$sql="select * from user where id=' ". $_GET['id']."  '  ";
+// $sql="select * from user where id=' ". $_GET['id']."  '  ";
+
+// 改成用session判斷，如此user就不能改URL為 id=1
+// 當瀏覽器關掉，session就會被清除，再打開便可登入
+//瀏覽器不一樣時，session也會不一樣
+// 若用無痕模式登入，session也會不一樣
+// session是根據每次和瀏覽器的連線而建立
+
+$sql="select * from user where id='".$_SESSION['id']."'";
+
 
 //SQL裡面用單引號 ' 用字串包覆 「　" . $_GET['id']. " 　」這個指令
 // where條件為 id= 是用GET抓取id陣列
@@ -117,5 +145,17 @@ $sql="select * from user where id=' ". $_GET['id']."  '  ";
 
     </div>
   </div>
+
+
+
+  <!-- how: 設定登入一次之後，就不用一直登入，讓首頁知道已經登入了，不要一直叫我登入   -->
+  <!-- PHP用session搭配cookie -->
+  <div>
+  <a href="index.php">回首頁</a>
+  </div>
+ 
+
+  
+  
 </body>
 </html>

@@ -10,5 +10,7 @@
 
 $dsn="mysql:host=localhost; charset=utf8; dbname=mydb";
 $pdo=new PDO($dsn, 'root', '');
+session_start();
+// 要有session start，有插入inclue的頁面，設定導頁之後，才會有導頁功能
 
 ?>

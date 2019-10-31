@@ -1,3 +1,18 @@
+
+
+<?php
+
+
+//若沒有include　base.php Page，就要先宣告使用session
+
+session_start();
+if(!empty($_SESSION['login'])){
+  // header("location:member_center.php?do=come"); 
+  //pp因為做了session，導頁到member即可, 不用do=come
+  header("location:member_center.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

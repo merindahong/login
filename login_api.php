@@ -1,4 +1,11 @@
+
+
+
 <?php
+
+
+include "base.php";
+
 /***************************************************
  * 會員登入行為：
  * 1.建立連線資料庫的參數
@@ -11,8 +18,10 @@
   echo $pw= $_POST['pw']; echo "<br>";
   
 
-$dsn="mysql:host=localhost; charset=utf8; dbname=mydb";
-$pdo=new PDO($dsn, 'root', '');
+  
+// $dsn="mysql:host=localhost; charset=utf8; dbname=mydb";
+// $pdo=new PDO($dsn, 'root', '');
+// 這個路徑可以省略了，因為base有寫了，且　page上方有 session
 
 // Try 1
   // $sql="select * from user where acc= '$acc'
@@ -83,7 +92,19 @@ $pdo=new PDO($dsn, 'root', '');
 print_r($data);
 if(!empty($data)){
   echo "登入成功";
-  header("location:member_center.php?id=".$data['id']);
+
+  $_SESSION["login"]=1;
+  // 設定 1 為成功 0為失敗
+  // header("location:member_center.php?id=".$data['id']);
+
+  $_SESSION["id"]=$data;  
+  header("location:member_center.php");
+
+  // $_SESSION['login']=1;
+//到member do if
+//session是一個陣列
+
+
 }else{
   echo "登入失敗";
   header("location:index.php?err=1");
