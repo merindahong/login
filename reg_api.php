@@ -48,13 +48,13 @@ if($pdo->exec($sql)){
     // echo "新增資料成功"，跳回index page;
     //前面的 echo $pdo->exec($sql);要取消，否則無法執行exec
     header("location:index.php?s=1");
-    //header指令導向位置為index，為回到html的頭欄位
+    //header指令導向位置為index，為回到html的頭欄位，?為php的程式，跑php的變數s，一定要給s一個值，可自由設定，如s=1
 }else{
     // echo "新增資料失敗，請洽詢管理人員，跳回reg page";
     header("location:reg.php?s=2");
 }
 
-//回index，加入if(!empty...)
+//回Index Page，加入if(!empty...)
 
 
 

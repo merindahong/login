@@ -21,13 +21,10 @@ $pdo=new PDO($dsn, 'root', '');
   // 也可 Try 2 簡化搜尋到的資料
   $sql="select count(*) as 'r' from user where acc= '$acc' && pw= '$pw'";
 
-
 // set 1
  $data= $pdo->query($sql)->fetch();
-// set 2
-  // $data= $pdo->query($sql)->fetch(PDO::FETCH_ROWS);
-// set 3
-//  $data= $pdo->query($sql)->fetchColumn();
+// set 2 可 $data= $pdo->query($sql)->fetch(PDO::FETCH_ROWS); 
+// set 3 可 $data= $pdo->query($sql)->fetchColumn();
 
 
 
@@ -39,15 +36,14 @@ $pdo=new PDO($dsn, 'root', '');
   // }else{
   //   echo "登錄失敗";
   // }
-
-  // 但這不應該在此頁印出資料，會有安全性問題, try next
+  // 但這不應該在此頁印出資料，會有安全性問題, try 2
 // _________________________________________________
 // print_r($data);
 // if(!empty($data)){
 //   echo "登錄成功";
 // }else{
 //   echo "登錄失敗";
-// }  若去改sql有count會更快 see try 2 below
+// }  若去改sql有count，程式路徑變短，會更快 try 2
 
 print_r($data);
 if($data['r']==1) {
@@ -57,7 +53,8 @@ if($data['r']==1) {
 }else{
 echo "登錄失敗"; 
 header("location:index.php?err=1");
-//header指向另一個page, indext但告訴PHP是 err的訊息
+//header指向另一個page, 為回到indext Page 但告訴php是 變數err的訊息 (?為php的程式，跑php的變數s，一定要給err一個值，可自由設定，如1
+// 有變數就要有值，所隨便設一個數字)
 }
 
 
