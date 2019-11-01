@@ -2,10 +2,11 @@
 
 <?php
 
+include "base.php";
 
 //若沒有include　base.php Page，就要先宣告使用session
 
-session_start();
+// session_start();
 
 if(!empty($_SESSION['login'])){
   // header("location:member_center.php?do=come"); 

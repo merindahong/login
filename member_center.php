@@ -1,4 +1,5 @@
  <?php
+ 
 include_once "base.php";
  
  // include_once "base.php";
@@ -7,8 +8,11 @@ include_once "base.php";
 // }
 
 if(empty($_SESSION["login"])){
+  header("location:index.php");   
+  // AAA 若不是登陸，導回首頁index
   exit();
 }
+
 
 //到C:/XAMPP/temp/開頭為 sess的檔案就是server的cookie紀錄
 // 用VS打開檔案，有敘述使用過的指令痕跡
@@ -17,10 +21,6 @@ if(empty($_SESSION["login"])){
 // 而非id=1不會透漏id訊息　（get會是 id=1)
 
 ?> 
-
-
-
- 
 
 
 <!DOCTYPE html>
@@ -72,6 +72,13 @@ include $file . ".php";
       HI! 歡迎光臨!以下是你的個人資料:
     </div>
     <div class="private">
+    
+    <!-- BBB 登出 --> 
+    <a href="logout.php">登出</a>
+    
+
+
+
       <!--請自行設計個人資料的呈現方式並從資料庫取得會員資料-->
 <?php
 
@@ -88,7 +95,7 @@ include $file . ".php";
 // 若用無痕模式登入，session也會不一樣
 // session是根據每次和瀏覽器的連線而建立
 
-$sql="select * from user where id='".$_SESSION['id']."'";
+$sql="select * from user where id= '  " .$_SESSION['id']. "  ' ";
 
 
 //SQL裡面用單引號 ' 用字串包覆 「　" . $_GET['id']. " 　」這個指令
