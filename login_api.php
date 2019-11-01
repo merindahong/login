@@ -16,6 +16,7 @@ include "base.php";
   ***************************************************/
   echo $acc= $_POST['acc']; echo "<br>";
   echo $pw= $_POST['pw']; echo "<br>";
+  echo $id= $_POST['id']; echo "<br>";
   
 
   
@@ -97,8 +98,8 @@ if(!empty($data)){
   // 設定 1 為成功 0為失敗
   // header("location:member_center.php?id=".$data['id']);
 
-  $_SESSION["id"]=$data;  
-  header("location:member_center.php");
+  $_SESSION["id"]=$data["id"];  
+header("location:member_center.php");
 
   // $_SESSION['login']=1;
 //到member do if
@@ -107,7 +108,7 @@ if(!empty($data)){
 
 }else{
   echo "登入失敗";
-  header("location:index.php?err=1");
+header("location:index.php?err=1");
 }	
 
 

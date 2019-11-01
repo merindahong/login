@@ -1,5 +1,5 @@
  <?php
-
+ 
 include_once "base.php";
  
  // include_once "base.php";
@@ -7,12 +7,13 @@ include_once "base.php";
   // exit();
 // }
 
+//123
 if(empty($_SESSION["login"])){
-  header("location:index.php");   
-  // AAA 若不是登陸，導回首頁index
-  exit();
-}
+  // exit(); //意旨PHP程式執行到這個地方後停止，Apache不再執行
+  header("location:index.php");
+  exit(); //DDD 導入header，PHP的程式執行到此後停止，
 
+}
 
 //到C:/XAMPP/temp/開頭為 sess的檔案就是server的cookie紀錄
 // 用VS打開檔案，有敘述使用過的指令痕跡
@@ -21,6 +22,10 @@ if(empty($_SESSION["login"])){
 // 而非id=1不會透漏id訊息　（get會是 id=1)
 
 ?> 
+
+
+
+ 
 
 
 <!DOCTYPE html>
@@ -49,10 +54,13 @@ if(empty($_SESSION["login"])){
 
 
 <body>
+
+
   <div class="member">
     <div class="wellcome">
 
 <?php
+
 
 
 // include "base.php"; 共用檔可以放在page最上方，
@@ -72,13 +80,12 @@ include $file . ".php";
       HI! 歡迎光臨!以下是你的個人資料:
     </div>
     <div class="private">
+<!-- DDD做登出連結 -->
+    <a href="logout.php">登出></a>
+    <a href="userlist.php">會員列表</a>
+
+
     
-    <!-- BBB 登出 --> 
-    <a href="logout.php">登出</a>
-    
-
-
-
       <!--請自行設計個人資料的呈現方式並從資料庫取得會員資料-->
 <?php
 
@@ -95,7 +102,8 @@ include $file . ".php";
 // 若用無痕模式登入，session也會不一樣
 // session是根據每次和瀏覽器的連線而建立
 
-$sql="select * from user where id= '  " .$_SESSION['id']. "  ' ";
+///123
+$sql="select * from user where id='".$_SESSION['id']."'";
 
 
 //SQL裡面用單引號 ' 用字串包覆 「　" . $_GET['id']. " 　」這個指令
@@ -113,6 +121,8 @@ $sql="select * from user where id= '  " .$_SESSION['id']. "  ' ";
         $user=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
         //print_r($user);
       ?>
+
+<form action="edit.php" method="post">
       <table>
         <tr>
           <td>id</td>
@@ -128,25 +138,39 @@ $sql="select * from user where id= '  " .$_SESSION['id']. "  ' ";
         </tr>
         <tr>
           <td>name</td>
-          <td><?=$user['name'];?></td>
+          <td><input type="text" name="name" value="<?=$user['name'];?>"></td>
+          
         </tr>
         <tr>
           <td>addr</td>
-          <td><?=$user['addr'];?></td>
+          <td><input type="text" name="addr" value="<?=$user['addr'];?>"></td>
         </tr>
         <tr>
           <td>tel</td>
-          <td><?=$user['tel'];?></td>
+          <td><input type="text" name="tel" value="<?=$user['tel'];?>"></td>
         </tr>
         <tr>
           <td>birthday</td>
-          <td><?=$user['birthday'];?></td>
+          <td><input type="text" name="birthday" value="<?=$user['birthday'];?>"></td>
         </tr>
         <tr>
-          <td>email</td>
-          <td><?=$user['email'];?></td>
+        <td>email</td>
+          <td><input type="text" name="email" value="<?=$user['email'];?>"></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+          <input type="submit" value="編輯"></td>
+          <input type="hidden" name="id" value="<?=$user['id'];?>">
+          <!-- 上方id並沒有用 post 抓取，因為user進入之後，就不需要再用 input type， -->
+          <!-- 所以這裡設一個 hidden的欄位，讓edit page可判斷和使用         -->
+          <input type="submit" value="編輯">
+
+
         </tr>
       </table>
+
+      </form>
 
 
 
