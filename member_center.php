@@ -1,4 +1,5 @@
  <?php
+ 
 include_once "base.php";
  
  // include_once "base.php";
@@ -8,7 +9,10 @@ include_once "base.php";
 
 //123
 if(empty($_COOKIE["login"])){
-  exit();
+  // exit(); //意旨PHP程式執行到這個地方後停止，Apache不再執行
+  header("location:index.php");
+  exit(); //DDD 導入header，PHP的程式執行到此後停止，
+
 }
 
 //到C:/XAMPP/temp/開頭為 sess的檔案就是server的cookie紀錄
@@ -73,6 +77,11 @@ include $file . ".php";
       HI! 歡迎光臨!以下是你的個人資料:
     </div>
     <div class="private">
+<!-- DDD做登出連結 -->
+    <a href="logout.php">登出></a>
+
+
+    
       <!--請自行設計個人資料的呈現方式並從資料庫取得會員資料-->
 <?php
 

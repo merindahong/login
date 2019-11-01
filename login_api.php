@@ -93,9 +93,15 @@ print_r($data);
 if(!empty($data)){
 echo "登入成功";
 
-  //123, 建立coookie　２分鐘
-setcookie("login", 1, time()+120);
-setcookie("id", $data["id"], time()+120);
+//   //123, 建立coookie　２分鐘
+// setcookie("login", 1, time()+120);
+// setcookie("id", $data["id"], time()+120);
+
+
+//DDDD 為了logout而設定
+setcookie("login", 1, time()+3600);
+setcookie("id", $data["id"], time()+3600);
+
 
 header("location:member_center.php");
 
